@@ -21,6 +21,10 @@ type RegisterOptions struct {
 	// Other options for implementations of the interface
 	// can be stored in a context
 	Context context.Context
+
+	SpecNodeId string
+
+	Metadata map[string]string
 }
 
 type WatchOptions struct {
@@ -80,6 +84,18 @@ func RegisterTTL(t time.Duration) RegisterOption {
 func RegisterContext(ctx context.Context) RegisterOption {
 	return func(o *RegisterOptions) {
 		o.Context = ctx
+	}
+}
+
+func SpecNodeId(nodeId string) RegisterOption {
+	return func(o *RegisterOptions) {
+		o.SpecNodeId = nodeId
+	}
+}
+
+func RegisterMetadata(md map[string]string) RegisterOption {
+	return func(o *RegisterOptions) {
+		o.Metadata = md
 	}
 }
 

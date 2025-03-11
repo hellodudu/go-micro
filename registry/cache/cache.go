@@ -179,9 +179,9 @@ func (c *cache) get(service string) ([]*registry.Service, error) {
 		c.watched[service] = true
 
 		// only kick it off if not running
-		if !c.running {
-			go c.run(service)
-		}
+		// if !c.running {
+		go c.run(service)
+		// }
 
 		c.Unlock()
 	}
